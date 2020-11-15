@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MODIFIED DOM</title>
+    </head>
+    <body>
+        <div class="new-container">
+            <h1>new container</h1>
+        </div>
+        <h1>INTRODUCTION</h1>
+        <h2>My Name is Jane</h2>
+        <p>I love cooking and exercising</p>
+        <p>I am studying in Purwadhika</p>
+
+        <div id='container'></div>
+        <h1>container</h1>
+    </body>
+    <script>
+        // ACCESS DOM => 
+        // NAVIGATE (NODES AND ELEMENT)
+        // SEARCHING => documentGetElementsBy => tagName, Class, id
+
+        // NOTE
+        // MODIFIKASI DOM
+        // 1# CONTENT MODIFICATION => textContent, text yg ada didalam <tag> HTML
+        let h1 = document.body.firstElementChild
+        console.log('h1', h1)
+        console.log('text content', h1.textContent)
+
+        // REVIEW
+        // textContent akan mengkonversi teks yg ada didlm tag HTML mjd string di JAVASCRIPT
+        // jd bisa dimodif pake method sting
+        h1.textContent = 'PERKENALAN' // += nambahin, = merubah
+
+
+        // KALAU MAU UPDATE NAMA DI H2
+        let h2 = h1.nextElementSibling
+        h2.textContent = 'NAMA SAYA J__DWPTR'
+
+        // modifed first p element using searching I LOVE COOKING
+        let paragraphs = document.body.getElementsByTagName('p')
+        console.log(paragraphs)
+        console.log(paragraphs[0])
+
+        paragraphs[0].textContent = 'SAYA SUKA MASAK DAN OLAHRAGA'
+
+        // REVIEW
+        // 2# STRUCTURE MODIFICATION => menambah atau mengurangi element
+        // .innerHTML dan appen()
+
+        // REVIEW
+        // METODE .innerHTML
+        // ADD NEW ELEMENT
+        let body = document.body
+        console.log('inner html :', body.innerHTML)
+        //pakai innerHTMl bisa override
+        // innerHTML akan mengkonversi semua element jd string
+        // artinya kita bisa modifikasi di JS dgn menganggapnya sbg string biasa
+
+        // ADD NEW ELEMENT
+        body.innerHTML += '<h1>ELEMENT BARU</h1>'
+        body.innerHTML += '<div>ELEMENT BARU DIV</div>'
+
+        // sama dengan (=) menghapus semua element di body
+        // body.innerHTML = ''
+
+        //REVIEW
+        // METODE .append() => UNTUK MENAMBAHKAN ELEMEN BARU
+        // sebelum menambahkan element baru => kita perlu bikin elementnya
+        let elementBaru = document.createElement('h1')
+        console.log(elementBaru)
+        elementBaru.textContent ='INI DIBUAT MENGGUNAKAN CREATE-ELEMENT'
+
+        // masukkan element kedalam tag yang diinginkan
+        document.body.append(elementBaru)
+        // by default => elemtn baru akan diletakkan di akhir
+
+        let divBaru = document.createElement('div')
+        divBaru.textContent = 'DIV BARU PAKAI CREATE ELEMENT'
+        // <div>DIV BARU PAKAI CREATE LEMENT</div>
+        divBaru.id = 'div-baru'
+        // <div ='div-baru'>DIV BARU PAKAI CREATE LEMENT</div>
+
+        document.body.append(divBaru)
+
+        // add new element inside element with id = container
+        let p = document.createElement('p')
+        p.textContent = 'PARAGRAF BARU DIBIKIN'
+
+        document.getElementById('container').append(p)
+
+        // REVIEW
+        // BAGAIMANA CARA MEMASUKKAN ELEMENT DI TENGAH _ TENGAH (bukan di awal/diakhir)
+        // .prepend() sama kyk .append() hanya beda peletakkan nya
+        let p2 = document.createElement('p')
+        p2.textContent = 'JAVASCRIPT IS FUN'
+        
+        document.getElementById('container').prepend(p2)
+        // document.getElementById('container').append(p)
+
+        // prepend di awal, append di akhir
+
+        // before() => sebelum container after()
+        let p3 = document.createElement('p')
+        p3.textContent = 'SAYA SUKA CODING'
+        document.getElementById('container').before(p3)
+
+        let p4 = document.createElement('p')
+        p4.textContent = 'SAYA SEKOLAH DI PURWADHIKA'
+        document.getElementById('container').after(p4)
+
+        // REVIEW
+        // MASUKAN ELEMENT DIANTARA h1 & h2 di body
+        let div = document.createElement('div')
+        div.innerHTML = '<h1>HELLO WORLD</h1>'
+        document.body.firstElementChild.after(div)
+
+        // add element .insertAdjacentHTML()
+        let newContainer = document.body.getElementsByClassName('new-container')
+        console.log(newContainer)
+
+        newContainer[0].insertAdjacentHTML('afterbegin', '<h3>HELLO DUNIA</h3>')
+        newContainer[0].insertAdjacentHTML('beforeend', '<p>hallo</p>')
+
+        // REVIEW
+        // 3# MODIFIED STYLE
+        let headings = document.getElementsByTagName('h1')
+        console.log(headings)
+
+        let jdwptr = headings[1]
+        jdwptr.style.color = 'red'
+        jdwptr.style.fontSize = '80px'
+        jdwptr.style.backgroundColor = 'orange'
+
+        document.body.style.backgroundColor = 'purple'
+
+        // hidden element => cara untuk hidden atau menyembunyikan element
+        // jdwptr.style.display = 'none'
+        // jdwptr.hidden = true
+    </script>
+</html>
